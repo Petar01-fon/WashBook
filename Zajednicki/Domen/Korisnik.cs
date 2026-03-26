@@ -8,16 +8,23 @@ namespace Zajednicki.Domen
     public class Korisnik : IEntity
     {
         public int IdKorisnik { get; set; }
+        public string KorisnickoIme { get; set; }
+        public string Sifra { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public string Telefon { get; set; }
         public string Email { get; set; }
         public string Adresa { get; set; }
         public Grad Grad { get; set; }
+        public string PrimaryKey => $"idKorisnik = {IdKorisnik}";
+        public string UpdateValues =>
+            $"korisnickoIme = '{KorisnickoIme}', sifra = '{Sifra}', ime = '{Ime}', " +
+            $"prezime = '{Prezime}', telefon = '{Telefon}', email = '{Email}', " +
+            $"adresa = '{Adresa}', idGrad = {Grad.IdGrad}";
         public string ImePrezime => $"{Ime} {Prezime}";
-        public string TablName => "Korisnik";
+        public string TableName => "Korisnik";
         public string Values =>
-            $"'{Ime}', '{Prezime}', '{Telefon}', '{Email}', '{Adresa}', {Grad.idGrad}";
+            $"'{KorisnickoIme}', '{Sifra}','{Ime}', '{Prezime}', '{Telefon}', '{Email}', '{Adresa}', {Grad.IdGrad}";
 
         public List<IEntity> GetReaderList(SqlDataReader reader)
         {
@@ -27,12 +34,14 @@ namespace Zajednicki.Domen
                 Korisnik k = new Korisnik
                 {
                     IdKorisnik = (int)reader["IdKorisnik"],
+                    KorisnickoIme = (string)reader["korisnickoIme"],
+                    Sifra = (string)reader["sifra"],
                     Ime = (string)reader["ime"],
                     Prezime = (string)reader["prezime"],
                     Telefon = (string)reader["telefon"],
                     Email = (string)reader["email"],
                     Adresa = (string)reader["adresa"],
-                    Grad = new Grad { idGrad = (int)reader["idGrad"] }
+                    Grad = new Grad { IdGrad = (int)reader["idGrad"] }
                 };
                 lista.Add(k);
             }

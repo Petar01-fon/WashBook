@@ -14,7 +14,16 @@ namespace Zajednicki.Domen
         public StatusRezervacije StatusRezervacije { get; set; } = StatusRezervacije.KREIRANA;
         public Radnik Radnik { get; set; }
         public Korisnik Korisnik { get; set; }
-        public string TablName => "Rezervacija";
+        public List<StavkaRezervacije> Stavke { get; set; } = new List<StavkaRezervacije>();
+
+        public string PrimaryKey => $"idRezervacija = {IdRezervacija}";
+        public string UpdateValues =>
+            $"datumRezervacije = '{DatumRezervacije:yyyy-MM-dd}', " +
+            $"terminPreuzimanja = '{TerminPreuzimanja:yyyy-MM-dd HH:mm:ss}', " +
+            $"terminVracanja = '{TerminVracanja:yyyy-MM-dd HH:mm:ss}', " +
+            $"statusRezervacije = '{StatusRezervacije}', " +
+            $"idRadnik = {Radnik.IdRadnik}, idKorisnik = {Korisnik.IdKorisnik}";
+        public string TableName => "Rezervacija";
 
         public string Values => $"'{DatumRezervacije:yyyy-MM-dd}', " +
                                 $"'{TerminPreuzimanja:yyyy-MM-dd HH:mm:ss}', " +
@@ -35,8 +44,18 @@ namespace Zajednicki.Domen
                     TerminPreuzimanja = (DateTime)reader["terminPreuzimanja"],
                     TerminVracanja = (DateTime)reader["terminVracanja"],
                     StatusRezervacije = Enum.Parse<StatusRezervacije>((string)reader["statusRezervacije"]),
-                    Radnik = new Radnik { IdRadnik = (int)reader["idRadnik"] },
-                    Korisnik = new Korisnik { IdKorisnik = (int)reader["idKorisnik"] }
+                    Radnik = new Radnik 
+                    { 
+                        IdRadnik = (int)reader["idRadnik"],
+                        Ime = (string)reader["imeRadnik"],
+                        Prezime = (string)reader["prezimeRadnik"]
+                    },
+                    Korisnik = new Korisnik 
+                    { 
+                        IdKorisnik = (int)reader["idKorisnik"],
+                        Ime = (string)reader["imeKorisnik"],
+                        Prezime = (string)reader["prezimeKorisnik"]
+                    }
                 };
                 lista.Add(r);
             }
@@ -48,4 +67,4 @@ namespace Zajednicki.Domen
         public override int GetHashCode() => IdRezervacija.GetHashCode();
     }
 }
-}
+

@@ -33,7 +33,7 @@ namespace DBBroker
         {
             transaction?.Commit();
         }
-        public void RallBack()
+        public void RollBack()
         {
             transaction.Rollback();
         }

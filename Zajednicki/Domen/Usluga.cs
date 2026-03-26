@@ -10,8 +10,11 @@ namespace Zajednicki.Domen
         public int IdUsluga { get; set; }
         public string Naziv { get; set; }
         public string Opis { get; set; }
-        public string TablName => "Usluga";
+        public string PrimaryKey => $"idUsluga = {IdUsluga}";
+        public string UpdateValues => $"naziv = '{Naziv}', opis = '{Opis}'";
+        public string TableName => "Usluga";
         public string Values => $"'{Naziv}', '{Opis}'";
+
 
         public List<IEntity> GetReaderList(SqlDataReader reader)
         {

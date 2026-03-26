@@ -11,8 +11,10 @@ namespace Zajednicki.Domen
         public string Naziv { get; set; }
         public string PostanskiBroj { get; set; }
 
+        public string PrimaryKey => $"idGrad = {IdGrad}";
+        public string UpdateValues => $"naziv = '{Naziv}', postanskiBroj = '{PostanskiBroj}'";
 
-        public string TablName => "Grad";
+        public string TableName => "Grad";
 
         public string Values => $"'{Naziv}', '{PostanskiBroj}'";
 
@@ -33,6 +35,7 @@ namespace Zajednicki.Domen
 
         }
         
+
         public override string ToString() => $"{Naziv} ({PostanskiBroj})";
         public override bool Equals(object? obj) => obj is Grad g && g.IdGrad == IdGrad;
 

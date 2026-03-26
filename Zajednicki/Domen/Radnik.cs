@@ -15,15 +15,20 @@ namespace Zajednicki.Domen
         public DateTime DatumRodjenja { get; set; }
         public string Adresa { get; set; }
         public string Telefon { get; set; }
+        public string PrimaryKey => $"idRadnik = {IdRadnik}";
+        public string UpdateValues =>
+                    $"korisnickoIme = '{KorisnickoIme}', sifra = '{Sifra}', ime = '{Ime}', " +
+                    $"prezime = '{Prezime}', datumRodjenja = '{DatumRodjenja:yyyyMMdd}', " +
+                    $"adresa = '{Adresa}', telefon = '{Telefon}'";
         public string ImePrezime => $"{Ime} {Prezime}";
-        public string TablName => "Radnik";
+        public string TableName => "Radnik";
         public string Values =>
             $"'{KorisnickoIme}', '{Sifra}', '{Ime}', '{Prezime}', " +
             $"'{DatumRodjenja:yyyyMMdd}', '{Adresa}', '{Telefon}'";
 
         public List<IEntity> GetReaderList(SqlDataReader reader)
         {
-            List <IEntity> lista = new List<IEntity>();
+            List<IEntity> lista = new List<IEntity>();
 
             while (reader.Read())
             {
@@ -42,9 +47,9 @@ namespace Zajednicki.Domen
             }
             return lista;
         }
-            public override string ToString() => ImePrezime;
-            public override bool Equals(object? obj) => obj is Radnik r && r.IdRadnik == IdRadnik;
-            public override int GetHashCode() => IdRadnik.GetHashCode();
+        public override string ToString() => ImePrezime;
+        public override bool Equals(object? obj) => obj is Radnik r && r.IdRadnik == IdRadnik;
+        public override int GetHashCode() => IdRadnik.GetHashCode();
 
 
     }

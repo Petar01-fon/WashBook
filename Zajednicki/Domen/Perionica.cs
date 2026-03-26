@@ -12,7 +12,11 @@ namespace Zajednicki.Domen
         public string Adresa { get; set; }
         public string Telefon { get; set; }
         public string Email { get; set; }
-        public string TablName => "Perionica";
+        public string PrimaryKey => $"idPerionica = {IdPerionica}";
+        public string UpdateValues =>
+            $"naziv = '{Naziv}', adresa = '{Adresa}', " +
+            $"telefon = '{Telefon}', email = '{Email}'";
+        public string TableName => "Perionica";
 
         public string Values => $"'{Naziv}', '{Adresa}', '{Telefon}', '{Email}'";
 
