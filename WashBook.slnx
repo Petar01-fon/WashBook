@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="DBBroker/DBBroker.csproj" />
+  <Project Path="Zajednicki/Zajednicki.csproj" />
+</Solution>
