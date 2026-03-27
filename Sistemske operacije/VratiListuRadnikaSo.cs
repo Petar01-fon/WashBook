@@ -6,12 +6,12 @@ using Zajednicki.Domen;
 
 namespace Sistemske_operacije
 {
-    public class VratiListuRadnikaSo : BaseSO
+    public class VratiListuRadnikaSO : BaseSO
     {
         private string condition;
         public List<Grad> Result { get; set; }
 
-        public VratiListuRadnikaSo(string condition)
+        public VratiListuRadnikaSO(string condition)
         {
             this.condition = condition;
         }

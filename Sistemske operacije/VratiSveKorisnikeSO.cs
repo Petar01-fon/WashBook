@@ -7,7 +7,7 @@ namespace Sistemske_operacije
 {
     public class VratiSveKorisnikeSO : BaseSO
     {
-        List<Korisnik> Result { get; set; }
+        public List<Korisnik> Result { get; set; }
         protected override void ExecuteConcreteOperation()
         {
             Result = broker.GetAll(new Korisnik()).Cast<Korisnik>().ToList();

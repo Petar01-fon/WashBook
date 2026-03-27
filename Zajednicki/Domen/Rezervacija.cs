@@ -46,15 +46,15 @@ namespace Zajednicki.Domen
                     StatusRezervacije = Enum.Parse<StatusRezervacije>((string)reader["statusRezervacije"]),
                     Radnik = new Radnik 
                     { 
-                        IdRadnik = (int)reader["idRadnik"],
-                        Ime = (string)reader["imeRadnik"],
-                        Prezime = (string)reader["prezimeRadnik"]
+                        IdRadnik = (int)reader["idRadnika"],
+                        Ime = (string)reader["imeRadnika"],
+                        Prezime = (string)reader["prezimeRadnika"]
                     },
                     Korisnik = new Korisnik 
                     { 
                         IdKorisnik = (int)reader["idKorisnik"],
-                        Ime = (string)reader["imeKorisnik"],
-                        Prezime = (string)reader["prezimeKorisnik"]
+                        Ime = (string)reader["imeKorisnika"],
+                        Prezime = (string)reader["prezimeKorisnika"]
                     }
                 };
                 lista.Add(r);
