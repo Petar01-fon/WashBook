@@ -10,8 +10,25 @@ namespace Klijent
         {
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
+            //ApplicationConfiguration.Initialize();
+            //Application.Run(new FrmPrijava());
+
+
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+
+            try
+            {
+                Komunikacija.Instance.Connect("127.0.0.1", 9999);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Ne može se uspostaviti konekcija sa serverom.\n{ex.Message}",
+                    "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Application.Run(new FrmPrijava());
         }
     }
 }

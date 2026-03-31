@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Zajednicki.Domen
 {
@@ -10,11 +11,11 @@ namespace Zajednicki.Domen
         public int IdRezervacija { get; set; }
         public int RbStavka { get; set; }
         public Usluga Usluga { get; set; }
-
-        public string TableName => "StavkaRezervacije";
-        public string PrimaryKey => $"idRezervacija = {IdRezervacija} AND rbStavka = {RbStavka}";
-        public string Values => $"{IdRezervacija}, {RbStavka}, {Usluga.IdUsluga}";
-        public string UpdateValues => $"idUsluga = {Usluga.IdUsluga}";
+        public List<SStavkaRezervacije> SStavke { get; set; } = new List<SStavkaRezervacije>();
+        [JsonIgnore] public string TableName => "StavkaRezervacije";
+        [JsonIgnore] public string PrimaryKey => $"idRezervacija = {IdRezervacija} AND rbStavka = {RbStavka}";
+        [JsonIgnore] public string Values => $"{IdRezervacija}, {RbStavka}, {Usluga.IdUsluga}";
+        [JsonIgnore] public string UpdateValues => $"idUsluga = {Usluga.IdUsluga}";
 
         public List<IEntity> GetReaderList(SqlDataReader reader)
         {

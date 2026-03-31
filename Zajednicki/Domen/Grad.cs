@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Zajednicki.Domen
 {
@@ -11,12 +12,12 @@ namespace Zajednicki.Domen
         public string Naziv { get; set; }
         public string PostanskiBroj { get; set; }
 
-        public string PrimaryKey => $"idGrad = {IdGrad}";
-        public string UpdateValues => $"naziv = '{Naziv}', postanskiBroj = '{PostanskiBroj}'";
+        [JsonIgnore] public string PrimaryKey => $"idGrad = {IdGrad}";
+        [JsonIgnore] public string UpdateValues => $"naziv = '{Naziv}', postanskiBroj = '{PostanskiBroj}'";
 
-        public string TableName => "Grad";
+        [JsonIgnore] public string TableName => "Grad";
 
-        public string Values => $"'{Naziv}', '{PostanskiBroj}'";
+        [JsonIgnore] public string Values => $"'{Naziv}', '{PostanskiBroj}'";
 
         public List<IEntity> GetReaderList(SqlDataReader reader)
         {

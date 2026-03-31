@@ -5,12 +5,12 @@ using Zajednicki.Domen;
 
 namespace Sistemske_operacije
 {
-    public class VratiSveTipoveVozilaSO : BaseSO
+    public class VratiSveUslugeSO : BaseSO
     {
-        public List<TipVozila> Result { get; set; }
+        public List<Usluga> Result { get; set; }
         protected override void ExecuteConcreteOperation()
         {
-            Result = broker.GetAll(new TipVozila()).Cast<TipVozila>().ToList();
+            Result = broker.GetAll(new Usluga()).Cast<Usluga>().ToList();
         }
     }
 }

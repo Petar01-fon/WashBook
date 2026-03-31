@@ -9,7 +9,7 @@ namespace Sistemske_operacije
     {
         private string korisnickoIme;
         private string sifra;
-        private Korisnik Result { get; set; }
+        public Korisnik Result { get; set; }
 
         public PrijavaKorisnikaSO(string korisnickoIme, string sifra)
         {

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Zajednicki.Domen
 {
@@ -14,13 +15,16 @@ namespace Zajednicki.Domen
         public double Cena { get; set; }
         public TipVozila TipVozila { get; set; }
 
-        public string TableName => "SStavkaRezervacije";
+        [JsonIgnore] public string TableName => "SStavkaRezervacije";
+        [JsonIgnore]
         public string PrimaryKey =>
             $"idRezervacija = {IdRezervacija} AND rbStavka = {RbStavka} AND rbSStavka = {RbSStavka}";
+        [JsonIgnore]
         public string Values =>
             $"{IdRezervacija}, {RbStavka}, {RbSStavka}, '{Registracija}', " +
             $"{Cena.ToString(System.Globalization.CultureInfo.InvariantCulture)}, " +
             $"{TipVozila.IdTipVozila}";
+        [JsonIgnore]
         public string UpdateValues =>
             $"registracija = '{Registracija}', " +
             $"cena = {Cena.ToString(System.Globalization.CultureInfo.InvariantCulture)}, " +
@@ -37,7 +41,7 @@ namespace Zajednicki.Domen
                     RbStavka = (int)reader["rbStavka"],
                     RbSStavka = (int)reader["rbSStavka"],
                     Registracija = (string)reader["registracija"],
-                    Cena = (double)reader["cena"],
+                    Cena = Convert.ToDouble(reader["cena"]),
                     TipVozila = new TipVozila { IdTipVozila = (int)reader["idTipVozila"] }
                 };
                 lista.Add(ss);

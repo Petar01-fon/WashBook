@@ -12,7 +12,7 @@ namespace DBBroker
 
         public DbConnection()
         {
-            connection = new SqlConnection("");
+            connection = new SqlConnection("Server=(localdb)\\MSSQLLocalDB;Database=WashBook;Trusted_Connection=True;TrustServerCertificate=True;");
         }
 
         public void OpenConnection()

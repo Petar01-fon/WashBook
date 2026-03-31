@@ -16,11 +16,11 @@ namespace Server
 
         private Action<string> log;
 
-        public ClientHandler(Socket clientSocket)
+        public ClientHandler(Socket clientSocket, Action<string> logAction = null)
         {
             this.clientSocket = clientSocket;
             serializer = new JsonNetworkSerializer(clientSocket);
-            this.log = log;
+            this.log = logAction ?? (msg => { });
         }
 
         public void ObradiZahtev()
@@ -71,9 +71,31 @@ namespace Server
                             Radnik result = Kontroler.Instance.PrijaviRadnika(r.KorisnickoIme, r.Sifra);
                             return new Odgovor { Uspesno = true, Objekat = result };
                         }
+                    case Operacija.PrijaviKorisnika:
+                        {
+                            Korisnik k = serializer.ReadType<Korisnik>(zahtev.Objekat);
+                            Korisnik result = Kontroler.Instance.PrijaviKorisnika(k.KorisnickoIme, k.Sifra);
+                            return new Odgovor { Uspesno = true, Objekat = result };
+                        }
+                    case Operacija.VratiZauzeteTermine:
+                        {
+                            DateTime datum = serializer.ReadType<DateTime>(zahtev.Objekat);
+                            List<DateTime> result = Kontroler.Instance.VratiZauzetTermine(datum);
+                            return new Odgovor { Uspesno = true, Objekat = result };
+                        }
                     case Operacija.VratiSveRadnike:
                         {
                             var result = Kontroler.Instance.VratiSveRadnike();
+                            return new Odgovor { Uspesno = true, Objekat = result };
+                        }
+                    case Operacija.VratiSveUsluge:
+                        {
+                            var result = Kontroler.Instance.VratiSveUsluge();
+                            return new Odgovor { Uspesno = true, Objekat = result };
+                        }
+                    case Operacija.VratiSveTipoveVozila:
+                        {
+                            var result = Kontroler.Instance.VratiSveTipoveVozila();
                             return new Odgovor { Uspesno = true, Objekat = result };
                         }
                     case Operacija.UbaciRezervaciju:
@@ -110,6 +132,12 @@ namespace Server
                         {
                             var result = Kontroler.Instance.VratiSveKorisnike();
                             return new Odgovor { Uspesno = true, Objekat = result };
+                        }
+                        case Operacija.StornirajRezervaciju:
+                        {
+                            Rezervacija r = serializer.ReadType<Rezervacija>(zahtev.Objekat);
+                            Kontroler.Instance.StornirajRezervaciju(r.IdRezervacija);
+                            return new Odgovor { Uspesno = true };
                         }
                     default:
                         return new Odgovor { Uspesno = false, Greska = "Nepoznata operacija." };

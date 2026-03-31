@@ -8,7 +8,7 @@ namespace Sistemske_operacije
     public class PretraziRezervacijuSO : BaseSO
     {
         private int idRezervacija;
-        public Rezervacija Result { get; set; }
+        public Rezervacija? Result { get; set; }
 
         public PretraziRezervacijuSO(int idRezervacija)
         {
@@ -17,7 +17,7 @@ namespace Sistemske_operacije
 
         protected override void ExecuteConcreteOperation()
         {
-            Result = broker.GetRezervacija(idRezervacija);
+            Result = (Rezervacija)broker.GetRezervacija(idRezervacija);
         }
     }
 }

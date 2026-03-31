@@ -31,7 +31,7 @@ namespace Server
                     Socket klijent = serverSocket.Accept();
                     Thread t = new Thread(() =>
                     {
-                        ClientHandler handler = new ClientHandler(klijent);
+                        ClientHandler handler = new ClientHandler(klijent, log);
                         handler.ObradiZahtev();
                     });
 

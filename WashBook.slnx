@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="DBBroker/DBBroker.csproj" />
+  <Project Path="Klijent/Klijent.csproj" Id="371b1304-1edb-4e40-9a55-ad47ea66cb00" />
   <Project Path="Server/Server.csproj" Id="b043e788-0253-4c23-9572-240cddbc3431" />
   <Project Path="Sistemske operacije/Sistemske operacije.csproj" />
   <Project Path="Zajednicki/Zajednicki.csproj" />

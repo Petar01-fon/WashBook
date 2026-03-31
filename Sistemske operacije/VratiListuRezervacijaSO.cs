@@ -17,8 +17,11 @@ namespace Sistemske_operacije
 
         protected override void ExecuteConcreteOperation()
         {
-            Result = broker.GetAllByCondition(new Rezervacija(), condition)
-                          .Cast<Rezervacija>().ToList();
+            //Result = broker.GetAllByCondition(new Rezervacija(), condition)
+            //              .Cast<Rezervacija>().ToList();
+
+            Result = broker.GetAllRezervacijeByCondition(condition)
+               .Cast<Rezervacija>().ToList();
         }
     }
 }

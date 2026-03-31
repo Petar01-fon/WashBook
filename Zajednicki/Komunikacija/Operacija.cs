@@ -9,18 +9,10 @@ namespace Zajednicki.Komunikacija
         // Radnik
         PrijaviRadnika,
         VratiSveRadnike,
-        UbaciRadnika,
-        PromeniRadnika,
-        ObrisiRadnika,
-        PretraziRadnika,
 
         // Korisnik
         PrijaviKorisnika,
         VratiSveKorisnike,
-        UbaciKorisnika,
-        PromeniKorisnika,
-        ObrisiKorisnika,
-        PretraziKorisnika,
 
         // Rezervacija
         UbaciRezervaciju,
@@ -28,10 +20,11 @@ namespace Zajednicki.Komunikacija
         ObrisiRezervaciju,
         PretraziRezervaciju,
         VratiListuRezervacija,
+        VratiZauzeteTermine,
+        StornirajRezervaciju,
+
 
         // Ostalo
-        VratiSveGradove,
-        VratiSvePerioniace,
         VratiSveTipoveVozila,
         VratiSveUsluge
     }

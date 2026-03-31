@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace Zajednicki.Domen
 {
@@ -15,16 +16,18 @@ namespace Zajednicki.Domen
         public DateTime DatumRodjenja { get; set; }
         public string Adresa { get; set; }
         public string Telefon { get; set; }
-        public string PrimaryKey => $"idRadnik = {IdRadnik}";
+        [JsonIgnore] public string PrimaryKey => $"idRadnik = {IdRadnik}";
+        [JsonIgnore]
         public string UpdateValues =>
-                    $"korisnickoIme = '{KorisnickoIme}', sifra = '{Sifra}', ime = '{Ime}', " +
-                    $"prezime = '{Prezime}', datumRodjenja = '{DatumRodjenja:yyyyMMdd}', " +
-                    $"adresa = '{Adresa}', telefon = '{Telefon}'";
-        public string ImePrezime => $"{Ime} {Prezime}";
-        public string TableName => "Radnik";
+                     $"korisnickoIme = '{KorisnickoIme}', sifra = '{Sifra}', ime = '{Ime}', " +
+                     $"prezime = '{Prezime}', datumRodjenja = '{DatumRodjenja:yyyyMMdd}', " +
+                     $"adresa = '{Adresa}', telefon = '{Telefon}'";
+        [JsonIgnore] public string ImePrezime => $"{Ime} {Prezime}";
+        [JsonIgnore] public string TableName => "Radnik";
+        [JsonIgnore]
         public string Values =>
-            $"'{KorisnickoIme}', '{Sifra}', '{Ime}', '{Prezime}', " +
-            $"'{DatumRodjenja:yyyyMMdd}', '{Adresa}', '{Telefon}'";
+             $"'{KorisnickoIme}', '{Sifra}', '{Ime}', '{Prezime}', " +
+             $"'{DatumRodjenja:yyyyMMdd}', '{Adresa}', '{Telefon}'";
 
         public List<IEntity> GetReaderList(SqlDataReader reader)
         {

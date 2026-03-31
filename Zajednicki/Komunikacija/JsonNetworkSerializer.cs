@@ -36,9 +36,14 @@ namespace Zajednicki.Komunikacija
             return JsonSerializer.Deserialize<T>(json);
         }
 
-        public T ReadType<T>(object podaci) where T : class
+        //public T ReadType<T>(object podaci) where T : class
+        //{
+        //    return podaci == null ? null : JsonSerializer.Deserialize<T>((JsonElement)podaci);
+        //}
+
+        public T ReadType<T>(object podaci)
         {
-            return podaci == null ? null : JsonSerializer.Deserialize<T>((JsonElement)podaci);
+            return podaci == null ? default : JsonSerializer.Deserialize<T>((JsonElement)podaci);
         }
 
         public void Close()

@@ -21,6 +21,13 @@ namespace Server
             return so.Result;
         }
 
+        public Korisnik PrijaviKorisnika(string korisnickoIme, string sifra)
+        {
+            PrijavaKorisnikaSO so = new PrijavaKorisnikaSO(korisnickoIme, sifra);
+            so.ExecuteTemplate();
+            return so.Result;
+        }
+
         public List<Radnik> VratiSveRadnike()
         {
             VratiSveRadnikeSO so = new VratiSveRadnikeSO();
@@ -28,6 +35,25 @@ namespace Server
             return so.Result.Cast<Radnik>().ToList();
         }
 
+        public List<Usluga> VratiSveUsluge()
+        {
+            VratiSveUslugeSO so = new VratiSveUslugeSO();
+            so.ExecuteTemplate();
+            return so.Result;
+        }
+
+        public List<TipVozila> VratiSveTipoveVozila()
+        {
+            VratiSveTipoveVozilaSO so = new VratiSveTipoveVozilaSO();
+            so.ExecuteTemplate();
+            return so.Result;
+        }
+        public List<DateTime> VratiZauzetTermine(DateTime datum)
+        {
+            VratiZauzetTermineSO so = new VratiZauzetTermineSO(datum);
+            so.ExecuteTemplate();
+            return so.Result;
+        }
         public void UbaciRezervaciju(Rezervacija rezervacija)
         {
             UbaciRezervacijuSO so = new UbaciRezervacijuSO(rezervacija);
@@ -43,6 +69,12 @@ namespace Server
         public void ObrisiRezervaciju(Rezervacija rezervacija)
         {
             ObrisiRezervacijuSO so = new ObrisiRezervacijuSO(rezervacija);
+            so.ExecuteTemplate();
+        }
+
+        public void StornirajRezervaciju(int idRezervacije)
+        {
+            StornirajRezervacijuSO so = new StornirajRezervacijuSO(idRezervacije);
             so.ExecuteTemplate();
         }
 
